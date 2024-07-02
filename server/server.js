@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: true, credentials: true })); // Allow requests from frontend
+app.use(cors({ origin: "https://cine-view-client.vercel.app", credentials: true })); // Allow requests from frontend
 app.use(mongoSanitize());
 app.use(helmet());
 app.use(xss());
