@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import axios from "axios";
+import { Route, Routes } from "react-router";
+import { ToastContainer } from "react-toastify";
+import AdminRoute from "./AdminRoute";
+import Cinema from "./pages/Cinema";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Movie from "./pages/Movie";
+import Purchase from "./pages/Purchase";
+import Register from "./pages/Register";
+import Schedule from "./pages/Schedule";
+import Search from "./pages/Search";
+import Showtime from "./pages/Showtime";
+import Tickets from "./pages/Tickets";
+import User from "./pages/User";
+
+axios.defaults.baseURL = "https://cinema-booking-api.vercel.app";
+axios.defaults.withCredentials = true;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cinema" element={<Cinema />} />
+        <Route
+          path="/movie"
+          element={
+            <AdminRoute>
+              <Movie />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <AdminRoute>
+              <Search />
+            </AdminRoute>
+          }
+        />
+        <Route path="/showtime/:id" element={<Showtime />} />
+        <Route path="/purchase/:id" element={<Purchase />} />
+        <Route path="/ticket" element={<Tickets />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route
+          path="/user"
+          element={
+            <AdminRoute>
+              <User />
+            </AdminRoute>
+          }
+        />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
