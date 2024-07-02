@@ -14,7 +14,7 @@ import Showtime from "./pages/Showtime";
 import Tickets from "./pages/Tickets";
 import User from "./pages/User";
 
-axios.defaults.baseURL = "https://cine-view-api.vercel.app";
+axios.defaults.baseURL = "https://cine-view-api.vercel.app:4000";
 axios.defaults.withCredentials = true;
 
 function App() {
