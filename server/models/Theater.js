@@ -17,13 +17,5 @@ const theaterSchema = new mongoose.Schema({
 	showtimes: [{ type: mongoose.Schema.ObjectId, ref: 'Showtime' }]
 })
 
-theaterSchema.pre('deleteOne', { document: true, query: true }, async function (next) {
-	const showtimes = await this.model('Showtime').find({ _id: { $in: this.showtimes } })
-
-	for (const showtime of showtimes) {
-		await showtime.deleteOne()
-	}
-	next()
-})
 
 module.exports = mongoose.model('Theater', theaterSchema)
